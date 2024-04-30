@@ -117,6 +117,10 @@
 </head>
 
 <body>
+
+                
+
+											  </script>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -243,9 +247,9 @@
 			        </tbody>
 			      </table>
                 
-                
-                
-                <div class="d-block d-sm-none card-body">
+               
+                <div class="d-block d-sm-none card-body"> 
+              
                   <c:if test="${not empty tenants }">
                   	<div id="b2b_data">
 	                    <c:forEach items="${tenants}" var="tenant" varStatus="sno">
@@ -342,6 +346,7 @@
 												</div>
 											</div>
 										</div>
+										
 										<div class="panel-footer">
 											<a class="btn btn-danger"
 												href="<%=request.getContextPath() %>/lct/residents/report-user/${tenant.user.id }"
@@ -350,46 +355,17 @@
 												Monthly Review
 											</a>
 											
-											<button class="btn btn-primary"
-												data-toggle="modal" 
-												data-target="#myBadgeModal"
+											<button type="button" class="btn btn-primary" 
+											    data-toggle="modal" 
+											    data-target="#myBadgeModal-${tenant.user.id}"
+											    
 												>
-												Assign Badge
+												Assign Badge ${tenant.user.id }
+												
 											</button>
-									         <!-- Modal -->
-											  <div class="modal fade" id="myBadgeModal" role="dialog">
-											    <div class="modal-dialog modal-lg">
-											      <div class="modal-content">
-											        <div class="modal-header">
-											          <button type="button" class="close" data-dismiss="modal">&times;</button>
-											          <h4 class="modal-title">Assign Badge</h4>
-											        </div>
-											        <div class="modal-body">
-											          <p>Please select the badge you want to assign</p>
-											         <div class="row">
-											          <c:forEach items="${badgesList}" var="badge">
-													    <div class="col-xs-4 col-md-4 col-sm-4">
-													      <div class="thumbnail">
-													      
-													        <a href="<%=request.getContextPath() %>/lct/residents/assignBadge/${tenant.user.id }__${badge.id}" target="_blank">
-													          <img src="<%=request.getContextPath() %>/${badge.name}" alt="Lights" style="width:100%">
-													          <div style="text-align:center">
-													            <p>${badge.title}</p>
-													          </div> 
-													        </a>
-													      </div>
-													    </div>
-													    </c:forEach>
-													  </div>
-											        </div>
-											        <div class="modal-footer">
-											        <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
-											          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											        </div>
-											      </div>
-											    </div>
-											  </div>
-											  <!-- end Modal -->
+											
+											
+									        
 											<span style="float: right;">
 												<%-- <a class="btn btn-warning"
 													href="<%=request.getContextPath() %>/admin/residents/generate-rent/${tenant.user.id }"
@@ -404,10 +380,49 @@
 													<i class="fas fa-edit"></i>
 												</a>
 											</span>
+											
 										</div>
+										
 									</div>
+									
 								</div>
 							</div>
+							 
+							 <!-- Modal -->
+											  <div class="modal fade" id="myBadgeModal-${tenant.user.id}" role="dialog">
+											    <div class="modal-dialog modal-lg">
+											      <div class="modal-content">
+											        <div class="modal-header">
+											          <button type="button" class="close" data-dismiss="modal">&times;</button>
+											          <h4 class="modal-title">Assign Badge</h4>
+											        </div>
+											        <div class="modal-body">
+											          <p>Please select the badge you want to assign userid: ${tenant.user.id}</p>
+											         <div class="row">
+											          <c:forEach items="${badgesList}" var="badge" varStatus="badgeCount">
+													    <div class="col-xs-4 col-md-4 col-sm-4">
+													      <div class="thumbnail">
+													      
+													        <a id="badgeLink" href="<%=request.getContextPath() %>/lct/residents/assignBadge/${tenant.user.id}__${badge.id}">
+													          <img src="<%=request.getContextPath() %>/${badge.name}" alt="Lights" style="width:100%">
+													          <div style="text-align:center">
+													            <p>${badge.title}</p>
+													          </div> 
+													        </a>
+													        
+													      </div>
+													    </div>
+													    </c:forEach>
+													  </div>
+											        </div>
+											        <div class="modal-footer">	
+											          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        </div>
+											      </div>
+											    </div>
+											  </div>
+											  <!--  end Modal -->
+											 
 						</c:forEach>
 					</div>
                  </c:if>
