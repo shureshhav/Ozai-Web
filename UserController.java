@@ -1247,8 +1247,8 @@ public class UserController {
 		return modelAndView;
 	}
     
-    public static final String ACCOUNT_SID = "AC80d6ef21aa4929c61f73c49db286573f";
-    public static final String AUTH_TOKEN = "0c94b3582b862b450dce9826eb0721c5";
+    public static final String ACCOUNT_SID = "xxxxxxxxxxxxxxxxxxxxx";
+    public static final String AUTH_TOKEN = "xxxxxxxxxxxxxxxxxxxxxx";
     
     @RequestMapping(value = "/mobile/sendWhatsAppMessages", method = RequestMethod.POST)
 	public void whatsappMessageSend(@ModelAttribute("MESSAGES") Messages Messages, BindingResult result, HttpSession session) {
